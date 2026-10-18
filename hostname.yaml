@@ -1,13 +1,9 @@
 ---
 - name: Get hostname
-  hosts: all
-  gather_facts: false
+  hosts: localhost
+  connection: local
+  gather_facts: true
   tasks:
     - name: Display hostname
-      ansible.builtin.command: hostname
-      register: hostname_output
-      changed_when: false
-
-    - name: Print hostname
       ansible.builtin.debug:
-        var: hostname_output.stdout
+        var: ansible_facts.hostname
